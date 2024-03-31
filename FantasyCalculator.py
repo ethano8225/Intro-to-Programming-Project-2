@@ -51,7 +51,17 @@ def display_league(user_input):
             print("no players found")
             break
 
-
+def display_player(user_input):
+    a=0
+    for i in range(10):
+        checking_player=playerList[i]
+        a=a+1
+        if checking_player.name == user_input:
+            checking_player.listPlayers()
+            print("")
+            a=a-1 
+        elif a==10:
+            print("no players found")
         
 while True:
     display_menu()
@@ -73,10 +83,11 @@ while True:
     if option =="3":
         selected_league=input("please indicate the league: ")
         display_league(selected_league)
-"""    
+   
     if option =="4":
-
-    
+        selected_player=input("please indicate name of player: ")
+        display_player(selected_player)
+"""    
     if option =="5":
 
     

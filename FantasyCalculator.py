@@ -42,12 +42,15 @@ def display_goal(user_input):
             break
             
 def display_league(user_input):
+    count = 0
     for i in range(10):
         checking_league=playerList[i]
+        count = count + 1
         if checking_league.league == user_input:
+            count =  count - 1
             checking_league.listPlayers()
             print("") 
-        else:
+        elif count == 10:
             print("no players found")
             break
 

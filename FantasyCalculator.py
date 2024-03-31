@@ -41,7 +41,17 @@ def display_goal(user_input):
             print("no players found")
             break
             
-        
+def display_league(user_input):
+    for i in range(10):
+        checking_league=playerList[i]
+        if checking_league.league == user_input:
+            checking_league.listPlayers()
+            print("") 
+        else:
+            print("no players found")
+            break
+
+
         
 while True:
     display_menu()
@@ -55,18 +65,15 @@ while True:
         print("")
         
     if option =="2":
-        min_num_of_goals=int(input("minimum number of goals the player has scored"))
+        min_num_of_goals=int(input("please indicate number of goals: "))
         display_goal(min_num_of_goals)
 
-#        for i in range(9):
- #           player_being_checked=playerList[i]
-  #          player_being_checked.listPlayers()
-   #     print("")
                 
-"""
-    if option =="3":
 
-    
+    if option =="3":
+        selected_league=input("please indicate the league: ")
+        display_league(selected_league)
+"""    
     if option =="4":
 
     

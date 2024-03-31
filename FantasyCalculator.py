@@ -71,12 +71,18 @@ def display_most_goals():
             best_players_goals=player_being_checked.goals
         else:
             continue
-    
     for i in range (10):
-        player_being_checked2=playerList[i]
+        player_being_checked2 = playerList[i]
         if best_players_goals == player_being_checked2.goals:
-            player_being_checked2.listPlayers()
-            print("")
+            print(f"{player_being_checked2.name} has the most goals with {player_being_checked2.goals}")
+    
+def calculate_total_points():
+    for i in range(10):
+        pl=playerList[i]
+        total_points= float(pl.goals) * 2.5 + float(pl.assists)*.93 + float(pl.passes) * .05
+        total_points_rounded=round(total_points,2)
+        print(f"{pl.name} has {total_points_rounded} points")
+        
 
 while True:
     display_menu()
@@ -91,9 +97,7 @@ while True:
         
     if option =="2":
         min_num_of_goals=int(input("please indicate number of goals: "))
-        display_goal(min_num_of_goals)
-
-                
+        display_goal(min_num_of_goals)             
 
     if option =="3":
         selected_league=input("please indicate the league: ")
@@ -105,11 +109,10 @@ while True:
     
     if option =="5":
         display_most_goals()
-"""    
-    if option =="6":
     
+    if option =="6":
+        calculate_total_points()
 
     if option =="7":
         print("Exiting")  #if they want to exit, break
         break
-"""

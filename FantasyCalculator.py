@@ -63,6 +63,21 @@ def display_player(user_input):
         elif a==10:
             print("no players found")
         
+def display_most_goals():
+    best_players_goals=0
+    for i in range(10):
+        player_being_checked=playerList[i]
+        if player_being_checked.goals > best_players_goals:
+            best_players_goals=player_being_checked.goals
+        else:
+            continue
+    
+    for i in range (10):
+        player_being_checked2=playerList[i]
+        if best_players_goals == player_being_checked2.goals:
+            player_being_checked2.listPlayers()
+            print("")
+
 while True:
     display_menu()
     option=input("Enter Command: ")
@@ -87,10 +102,10 @@ while True:
     if option =="4":
         selected_player=input("please indicate name of player: ")
         display_player(selected_player)
-"""    
-    if option =="5":
-
     
+    if option =="5":
+        display_most_goals()
+"""    
     if option =="6":
     
 

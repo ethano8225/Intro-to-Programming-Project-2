@@ -13,11 +13,15 @@ class Player:
         self.passes = passes
     def listPlayers(self):
         if len(self.name) <= 17 and len(self.name) > 10:
-            text = "{0:<0}\t\t{1:>6}\t{2:>13}{3:>18}\t{4:>25} 1".format(self.name,self.league,self.goals,self.assists,self.passes)
+            text = "{0:<0}\t\t{1:>6}\t{2:>13}{3:>18}\t{4:>14}".format(self.name,self.league,self.goals,self.assists,self.passes)
         if len(self.name) == 10:
-            text = "{0:<0}{1:>20}\t{2:>13}{3:>18}\t{4:>18} 2".format(self.name,self.league,self.goals,self.assists,self.passes)
+            text = "{0:<0}{1:>20}\t{2:>13}{3:>18}\t{4:>14}".format(self.name,self.league,self.goals,self.assists,self.passes)
         if len(self.name) > 17:
-            text = "{0:<0}{1:>12}\t{2:>13}{3:>18}\t{4:>18} 3".format(self.name,self.league,self.goals,self.assists,self.passes)
+            text = "{0:<0}{1:>12}\t{2:>13}{3:>18}\t{4:>14}".format(self.name,self.league,self.goals,self.assists,self.passes)
+        if len(self.name) == 15 and len(self.league) == 7:
+            text =  "{0:<0}\t{1:>14}\t{2:>13}{3:>18}\t{4:>14}".format(self.name,self.league,self.goals,self.assists,self.passes)
+        if len(self.name) == 15 and len(self.league) == 10:
+            text = "{0:<0}\t{1:>14}\t{2:>13}{3:>18}\t{4:>14}".format(self.name,self.league,self.goals,self.assists,self.passes)
         print(text)
 
 

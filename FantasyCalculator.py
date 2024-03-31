@@ -1,6 +1,6 @@
 ####### Names and Spire ID ###########
 # 1. Ethan O'Connor 34445111
-# 2. Ryan Blanchette 34620003
+# 2. Ryan Blanchette 34260003
 
 """ Implement the main program and functions below """
 import Player
@@ -31,6 +31,18 @@ def display_menu():
 print("Welcome to your Fantasy Team Database!")
 print("====================\n\n")
 
+def display_goal(user_input):
+    for i in range(10):
+        player_being_checked=playerList[i]
+        if  player_being_checked.goals >= user_input:
+            player_being_checked.listPlayers()
+            print("")
+        elif user_input>30:
+            print("no players found")
+            break
+            
+        
+        
 while True:
     display_menu()
     option=input("Enter Command: ")
@@ -41,10 +53,17 @@ while True:
         for i in playerList:
             i.listPlayers()
         print("")
-        """
+        
     if option =="2":
-    
+        min_num_of_goals=int(input("minimum number of goals the player has scored"))
+        display_goal(min_num_of_goals)
 
+#        for i in range(9):
+ #           player_being_checked=playerList[i]
+  #          player_being_checked.listPlayers()
+   #     print("")
+                
+"""
     if option =="3":
 
     
@@ -57,9 +76,7 @@ while True:
     if option =="6":
     
 
-    """
-
-
     if option =="7":
         print("Exiting")  #if they want to exit, break
         break
+"""

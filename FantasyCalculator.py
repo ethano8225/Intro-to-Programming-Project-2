@@ -32,8 +32,7 @@ def initialize():
     return playerList
 
 def display_goal(user_input):
-    for i in range(10):
-        playerX=playerList[i]
+    for playerX in playerList:
         if  playerX.goals >= user_input:        # only print if player goals is greater than user input
             playerX.listPlayers()
         elif user_input > 30:                   # no player has more than 30 goals, print if 
@@ -42,10 +41,9 @@ def display_goal(user_input):
             
 def display_league(user_input):
     count = 0
-    for i in range(10):                         # displays players with specific league,
-        playerX=playerList[i]           # and checks to see if none are printed to say
-        count = count + 1                       # no players found, if needed.
-        if playerX.league == user_input:
+    for playerX in playerList:                  # displays players with specific league,
+        count = count + 1                       # and checks to see if none are printed to say
+        if playerX.league == user_input:        # no players found, if needed.
             count =  count - 1
             playerX.listPlayers()
         elif count == 10:
@@ -54,8 +52,7 @@ def display_league(user_input):
 
 def display_player(user_input):
     a=0
-    for i in range(10):
-        playerX=playerList[i]
+    for playerX in playerList:
         a=a+1
         if playerX.name == user_input:         # for loop to go through all the players
             playerX.listPlayers()              # and check if the name matches.
@@ -65,25 +62,19 @@ def display_player(user_input):
         
 def display_most_goals():
     mostGoals=0
-    for i in range(10):
-        playerX=playerList[i]                   # for loop to go through players.
+    for i in range(10):                         # for loop to go through players.
+        playerX = playerList[i]
         if playerX.goals > mostGoals:           # Set bestPlayerGoals to a higher value if that player
             mostGoals=playerX.goals             # has more goals.
             topGoalScorer = i
     topPlayer = playerList[topGoalScorer]
     print(f"{topPlayer.name} has the most goals with {topPlayer.goals}.\n")
-    #for i in range (10):
-    #    mostGoalPlayer = playerList[i]          # print out the player that matches that amount
-    #    if mostGoals == mostGoalPlayer.goals:   # of goals
-    #        print(f"{mostGoalPlayer.name} has the most goals with {mostGoalPlayer.goals}.\n")
     
 def calculate_total_points():
-    for i in range(10):
-        playerX=playerList[i]                                      # goals = 2.5 pts per, assists is .93 per, passes are .05 per.
-        total_points= float(playerX.goals) * 2.5 + float(playerX.assists)*.93 + float(playerX.passes) * .05
-        total_points_rounded=round(total_points,2) """we could put this on one line"""
-        print(f"{playerX.name} has {total_points_rounded} points.") # print out the player with x amount of fantasy points.
-    print("")                   # provide a newline for the new menu prompt
+    for playerX in playerList:                              # goals = 2.5 pts per, assists is .93 per, passes are .05 per.
+        total_points= round(float(playerX.goals)*2.5+float(playerX.assists)*.93+float(playerX.passes)*.05,2)
+        print(f"{playerX.name} has {total_points} points.") # print out the player with x amount of fantasy points.
+    print("")                       # provide a newline for the new menu prompt
 
 def requiredLine():                 # to print the required line in a less messy way
     print(f"{"Name":20}{"League":>10}{"Goals":>10}{"Assists":>10}{"Passes":>10}")
@@ -95,15 +86,15 @@ while True:
     
     if option =="1":
         requiredLine()
-        for i in playerList:    # easy way to list all players
-            i.listPlayers()
-        print("")               # provide a newline for the new menu prompt
+        for playerX in playerList:      # easy way to list all players
+            playerX.listPlayers()
+        print("")                       # provide a newline for the new menu prompt
         
     if option =="2":
-        min_num_of_goals=int(input("Please indicate number of goals: "))
-        if min_num_of_goals <= 30:              # dont print if variable > 30
+        min_goals=int(input("Please indicate number of goals: "))
+        if min_goals <= 30:                     # dont print if variable > 30
             requiredLine()
-        display_goal(min_num_of_goals)
+        display_goal(min_goals)
         print("")                               # provide a newline for the new menu prompt      
 
     if option =="3":
@@ -111,16 +102,16 @@ while True:
         if selected_league == "EPL" or selected_league == "Bundesliga" or selected_league == "La Liga":
             requiredLine()                          # only print for valid leagues
         display_league(selected_league)
-        print("")                               # provide a newline for the new menu prompt
+        print("")                                   # provide a newline for the new menu prompt
    
     if option =="4":
         selected_player=input("Please indicate name of player: ")
         for i in range(10):
-            player = playerList[i]              # check if name exists, if it does, print out name/league...
+            player = playerList[i]                  # check if name exists, if it does, print out name/league...
             if player.name == selected_player:
                 requiredLine()                      # only print if the player name is in the list
         display_player(selected_player)
-        print("")                               # provide a newline for the new menu prompt
+        print("")                                   # provide a newline for the new menu prompt
     
     if option =="5":
         display_most_goals()

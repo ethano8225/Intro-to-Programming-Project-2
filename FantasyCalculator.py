@@ -5,6 +5,7 @@
 """ Implement the main program and functions below """
 import Player 
 #CHANGE TO from Player import Player (or whatever the class name is)
+#ADD function doc strings (screenshotted 2 photos on phone) to all funcs
 def display_menu():
     print("1-List all players")
     print("2-List all players with at least a specific number of goals")

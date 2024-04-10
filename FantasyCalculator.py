@@ -38,7 +38,7 @@ def display_goal(user_input):
         elif user_input > 30:                   # no player has more than 30 goals, print if 
             print("No players found.")          # user input > 30
             break
-            
+#add a check for invalid / negative input using else           
 def display_league(user_input):
     count = 0
     for playerX in playerList:                  # displays players with specific league,
@@ -49,7 +49,7 @@ def display_league(user_input):
         elif count == 10:
             print("No players found.")
             break
-
+#change userinput to leaguename, change count for an if statement if input isnt epl, la liga or bundesliga, return 0
 def display_player(user_input):
     a=0
     for playerX in playerList:
@@ -72,7 +72,7 @@ def display_most_goals():
     
 def calculate_total_points():
     for playerX in playerList:                              # goals = 2.5 pts per, assists is .93 per, passes are .05 per.
-        total_points= round(float(playerX.goals)*2.5+float(playerX.assists)*.93+float(playerX.passes)*.05,2)
+        total_points = round(float(playerX.goals)*2.5+float(playerX.assists)*.93+float(playerX.passes)*.05,2)
         print(f"{playerX.name} has {total_points} points.") # print out the player with x amount of fantasy points.
     print("")                       # provide a newline for the new menu prompt
 
@@ -96,14 +96,14 @@ while True:
             requiredLine()
         display_goal(min_goals)
         print("")                               # provide a newline for the new menu prompt      
-
+#check for invalid user input ie text or negative num with while loop
     if option =="3":
         selected_league=input("Please indicate the league: ")
         if selected_league == "EPL" or selected_league == "Bundesliga" or selected_league == "La Liga":
             requiredLine()                          # only print for valid leagues
         display_league(selected_league)
         print("")                                   # provide a newline for the new menu prompt
-   
+   #check for invalid user input by adding else statement and tabbing other thing in
     if option =="4":
         selected_player=input("Please indicate name of player: ")
         for i in range(10):
@@ -112,7 +112,7 @@ while True:
                 requiredLine()                      # only print if the player name is in the list
         display_player(selected_player)
         print("")                                   # provide a newline for the new menu prompt
-    
+    # check for number input
     if option =="5":
         display_most_goals()
     

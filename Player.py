@@ -7,10 +7,9 @@
 class Player:
     def __init__(self,name,league,goals,assists,passes):
         self.name = name
-        self.league = league        # all players have these attributes
+        self.league = league         # all players have these attributes
         self.goals = goals
         self.assists = assists
         self.passes = passes
-    def listPlayers(self):          # simple one-line to display information of a player cleanly (for all players)
+    def print_player(self):          # simple one-line to display information of a player cleanly (for all players)
         print("{0:20}{1:>10}{2:10}{3:10}{4:10}".format(self.name,self.league,self.goals,self.assists,self.passes))
-    #CHANGE NAME TO print_player

@@ -70,7 +70,7 @@ def display_most_goals():
             topGoalScorer = i
     topPlayer = playerList[topGoalScorer]
     print(f"{topPlayer.name} has the most goals with {topPlayer.goals}.\n")
-    
+#instead of for i in range, for i in len(playerList)
 def calculate_total_points():
     for playerX in playerList:                              # goals = 2.5 pts per, assists is .93 per, passes are .05 per.
         total_points = round(float(playerX.goals)*2.5+float(playerX.assists)*.93+float(playerX.passes)*.05,2)

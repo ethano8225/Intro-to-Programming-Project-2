@@ -46,37 +46,32 @@ def display_goal(minGoals):
                 playerX.print_player()
             elif minGoals > 30:                     # no player has more than 30 goals, print if 
                 print("No players found.")          # user input > 30
-                break
     else:
         print("Invalid (text or negative number) input.")
 
 
 def display_league(leagueName):
     """display_league() shows players that are in a user-selected league."""
-
-    if leagueName.isnumeric() == True:          # immediate error check to see if input is a number
-        return "League name can not be a number."
     
-    if len(leagueName) == 3:                                   # if input is length of EPL, uppercase
-        leagueName = leagueName.upper()                   # in case "epl" was typed
-
-    if len(leagueName) == 10:     # same idea here for Bundesliga and La Liga
-        leagueName = leagueName.title()
-    if len(leagueName) == 7:
+    if len(leagueName) == 3:                        # if input is length of EPL, uppercase
+        leagueName = leagueName.upper()             # in case "epl" was typed (or sth similar)
+    if len(leagueName) == 10:                       
+        leagueName = leagueName.title()             # same idea here for Bundesliga and La Liga
+    if len(leagueName) == 7 and len(leagueName.split()) == 2:
         name = leagueName.split()
-        la = (name[0] + name[1] + name[2]).title()
-        liga = (name[3] + name[4] + name[5] + name[6]).title()
-        leagueName = la + liga
+        la = (name[0]).title()                      # la liga requires more code to uppercase
+        liga = (name[1]).title()                    # due to title only capatalizing first letter
+        leagueName = la + " " + liga
 
-    if leagueName == "EPL" or leagueName == "Bundesliga" or leagueName == "La Liga":
+    if leagueName != "EPL" and leagueName != "Bundesliga" and leagueName != "La Liga":
+        print("No players found.")
+        return 0
+    else:
         required_line()                          # only print for valid leagues
 
     for playerX in playerList:                  # displays players with specific league,                  
         if playerX.league == leagueName:        # if leagueName is not a league in the set, 
             playerX.print_player()              # return no players found.
-        elif leagueName != "EPL" and leagueName != "Bundesliga" and leagueName != "La Liga":
-            print("No players found.")
-            break
 
 
 def display_player(user_input):
@@ -85,7 +80,7 @@ def display_player(user_input):
     for playerX in playerList:
         a=a+1
         if playerX.name == user_input:         # for loop to go through all the players
-            playerX.print_player()              # and check if the name matches.
+            playerX.print_player()             # and check if the name matches.
             a=a-1                              # also keeps track if no players were printed
         elif a==10:
             print("No players found.")
@@ -94,11 +89,11 @@ def display_player(user_input):
 def display_most_goals():
     """display_most_goals() shows the player with the most goals, along with how many goals they have."""
     mostGoals=0
-    for player in range(len(playerList)):                   # for loop to go through players.
+    for player in range(len(playerList)):       # for loop to go through players.
         playerX = playerList[player]
-        if playerX.goals > mostGoals:           # Set bestPlayerGoals to a higher value if that player
-            mostGoals=playerX.goals             # has more goals.
-            topGoalScorer = player
+        if playerX.goals > mostGoals:           # Set mostGoals to a higher value if that player
+            mostGoals=playerX.goals             # has more goals. also keep track of the spot 
+            topGoalScorer = player              # in the list where the top goal scorer is
     topPlayer = playerList[topGoalScorer]
     print(f"{topPlayer.name} has the most goals with {topPlayer.goals}.\n")
 
@@ -108,7 +103,7 @@ def calculate_total_points():
     for playerX in playerList:                              # goals = 2.5 pts per, assists is .93 per, passes are .05 per.
         total_points = round(float(playerX.goals)*2.5+float(playerX.assists)*.93+float(playerX.passes)*.05,2)
         print(f"{playerX.name} has {total_points} points.") # print out the player with x amount of fantasy points.
-    print("")                       # provide a newline for the new menu prompt
+    print("")                                               # provide a newline for the new menu prompt
 
 
 
@@ -132,11 +127,12 @@ while True:
         while True:
             min_goals=input("Please indicate number of goals: ")
             if min_goals.isdecimal() == True:           # if isdecimal() returns true, print the players,             
-                    break                               # if not, say invalid input, and don't break 
-            if min_goals.isnumeric() == False:          # so it asks the user again
-                print("Invalid (negative or text) input.\n")                      
+                break                                   # if not, say invalid input, and don't break 
+            elif min_goals.isnumeric() == False:        # so it asks the user again
+                print("Invalid (negative or text) input.\n")      
+                
         if int(min_goals) >= 0 and int(min_goals) < 31:
-            required_line()                 # print the line if user input <= 30
+            required_line()                             # print the line if user input is in the valid range
         display_goal(min_goals)
         print("")              
 
@@ -146,8 +142,8 @@ while True:
             selected_league=input("Please indicate the league: ")  
             if selected_league.isdecimal() == True:            
                 print("Invalid (number) input.\n")  
-            if selected_league.isdecimal() == False:           # if isdecimal() returns false, print the players,  
-                display_league(selected_league)
+            if selected_league.isdecimal() == False:           # if isdecimal() returns false, print the players 
+                display_league(selected_league)                # if its true, re-ask for input
                 print("") 
                 break                                          # provide a newline for the new menu prompt    
 
